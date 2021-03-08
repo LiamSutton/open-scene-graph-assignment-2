@@ -203,9 +203,61 @@ void createCarTwo(osg::Group* pRoadGroup) {
 	apfs.push_back(raaAnimationPointFinder("tile20", 2, pRoadGroup));
 	apfs.push_back(raaAnimationPointFinder("tile20", 0, pRoadGroup));
 
+	apfs.push_back(raaAnimationPointFinder("tile19", 0, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile19", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile19", 2, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile18", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile18", 3, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile16", 8, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile16", 2, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile15", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile15", 3, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile14", 0, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile14", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile14", 2, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile13", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile13", 3, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile11", 8, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile11", 9, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile11", 7, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile12", 2, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile12", 0, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile6", 5, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile6", 6, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile6", 7, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile5", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile5", 3, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile4", 0, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile4", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile4", 2, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile3", 2, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile3", 0, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile2", 0, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile2", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile2", 2, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile1", 2, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile1", 0, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile0", 8, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile0", 2, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile20", 2, pRoadGroup));
 	ap = createAnimationPath(apfs, pRoadGroup);
 
-	raaCarFacarde* pCar = new raaCarFacarde(g_pRoot, raaAssetLibrary::getNamedAsset("vehicle", "car0"), ap, 50.0);
+	raaCarFacarde* pCar = new raaCarFacarde(g_pRoot, raaAssetLibrary::getNamedAsset("vehicle", "car1"), ap, 50.0);
 	g_pRoot->addChild(pCar->root());
 }
 
