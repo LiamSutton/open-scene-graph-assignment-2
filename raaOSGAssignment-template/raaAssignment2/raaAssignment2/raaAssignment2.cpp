@@ -95,14 +95,35 @@ osg::AnimationPath* createAnimationPath(raaAnimationPointFinders apfs, osg::Grou
 
 void buildRoad(osg::Group* pRoadGroup)
 {
-	addRoadTile("roadStraight", "tile0", 0, 0, 0.0f, pRoadGroup);
+	/*addRoadTile("roadStraight", "tile0", 0, 0, 0.0f, pRoadGroup);
 	addRoadTile("roadCurve", "tile1", 1, 0, 90.0f, pRoadGroup);
 	addRoadTile("roadStraight", "tile2", 1, 1, 90.0f, pRoadGroup);
 	addRoadTile("roadCurve", "tile3", 1, 2, 180.0f, pRoadGroup);
 	addRoadTile("roadStraight", "tile4", 0, 2, 0.0f, pRoadGroup);
 	addRoadTile("roadCurve", "tile5", -1, 2, -90.0f, pRoadGroup);
 	addRoadTile("roadStraight", "tile6", -1, 1, -90.0f, pRoadGroup);
-	addRoadTile("roadCurve", "tile7", -1, 0, 0.0f, pRoadGroup);
+	addRoadTile("roadCurve", "tile7", -1, 0, 0.0f, pRoadGroup);*/
+	addRoadTile("roadTJunction", "tile0", 0, 0, -90.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile1", -1, 0, 0.0f, pRoadGroup);
+	addRoadTile("roadCurve", "tile2", -2, 0, 0.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile3", -2, 1, -90.0f, pRoadGroup);
+	addRoadTile("roadTJunction", "tile4", -2, 2, -180.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile5", -1, 2, 0.0f, pRoadGroup);
+	addRoadTile("roadXJunction", "tile6", 0, 2, 0.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile7", 0, 1, -90.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile8", -2, 3, -90.0f, pRoadGroup);
+	addRoadTile("roadCurve", "tile9", -2, 4, -90.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile10", -1, 4, 0.0f, pRoadGroup);
+	addRoadTile("roadTJunction", "tile11", 0, 4, 90.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile12", 0, 3, -90.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile13", 1, 4, 0.0f, pRoadGroup);
+	addRoadTile("roadCurve", "tile14", 2, 4, 180.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile15", 2, 3, -90.0f, pRoadGroup);
+	addRoadTile("roadTJunction", "tile16", 2, 2, 0.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile17", 1, 2, 0.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile18", 2, 1, -90.0f, pRoadGroup);
+	addRoadTile("roadCurve", "tile19", 2, 0, 90.0f, pRoadGroup);
+	addRoadTile("roadStraight", "tile20", 1, 0, 0.0f, pRoadGroup);
 }
 
 void createCarOne(osg::Group* pRoadGroup)
@@ -110,7 +131,7 @@ void createCarOne(osg::Group* pRoadGroup)
 	raaAnimationPointFinders apfs;
 	osg::AnimationPath* ap = new osg::AnimationPath();
 
-	apfs.push_back(raaAnimationPointFinder("tile0", 1, pRoadGroup));
+	/*apfs.push_back(raaAnimationPointFinder("tile0", 1, pRoadGroup));
 	apfs.push_back(raaAnimationPointFinder("tile0", 3, pRoadGroup));
 	apfs.push_back(raaAnimationPointFinder("tile7", 3, pRoadGroup));
 	apfs.push_back(raaAnimationPointFinder("tile7", 4, pRoadGroup));
@@ -130,7 +151,37 @@ void createCarOne(osg::Group* pRoadGroup)
 	apfs.push_back(raaAnimationPointFinder("tile1", 3, pRoadGroup));
 	apfs.push_back(raaAnimationPointFinder("tile1", 4, pRoadGroup));
 	apfs.push_back(raaAnimationPointFinder("tile1", 5, pRoadGroup));
-	apfs.push_back(raaAnimationPointFinder("tile0", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile0", 1, pRoadGroup));*/
+
+	apfs.push_back(raaAnimationPointFinder("tile0", 4, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile1", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile1", 3, pRoadGroup));
+	
+	apfs.push_back(raaAnimationPointFinder("tile2", 3, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile2", 4, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile2", 5, pRoadGroup));
+	
+	apfs.push_back(raaAnimationPointFinder("tile3", 1, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile3", 3, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile4", 5, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile4", 6, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile4", 7, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile5", 2, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile5", 0, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile6", 0, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile6", 3, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile6", 4, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile7", 2, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile7", 0, pRoadGroup));
+
+	apfs.push_back(raaAnimationPointFinder("tile0",	0, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile0", 3, pRoadGroup));
+	apfs.push_back(raaAnimationPointFinder("tile0", 4, pRoadGroup));
 	ap = createAnimationPath(apfs, pRoadGroup);
 	// NOTE: you will need to extend or develop the car facarde to manage the animmation speed and events
 	raaCarFacarde* pCar = new raaCarFacarde(g_pRoot, raaAssetLibrary::getNamedAsset("vehicle", "car0"), ap, 50.0);
