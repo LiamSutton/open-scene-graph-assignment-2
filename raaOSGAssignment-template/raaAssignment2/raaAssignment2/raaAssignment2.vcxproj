@@ -157,6 +157,8 @@
     <ClCompile Include="raaRoadTileFacarde.cpp" />
     <ClCompile Include="raaSwitchActivator.cpp" />
     <ClCompile Include="raaTrafficSystem.cpp" />
+    <ClCompile Include="TrafficLightControl.cpp" />
+    <ClCompile Include="TrafficLightFacarde.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="raaAnimatedFacarde.h" />
@@ -173,6 +175,8 @@
     <ClInclude Include="raaRoadTileFacarde.h" />
     <ClInclude Include="raaSwitchActivator.h" />
     <ClInclude Include="raaTrafficSystem.h" />
+    <ClInclude Include="TrafficLightControl.h" />
+    <ClInclude Include="TrafficLightFacarde.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

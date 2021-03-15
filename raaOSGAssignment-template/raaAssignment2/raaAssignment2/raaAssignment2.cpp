@@ -21,6 +21,7 @@
 #include "raaAnimatedFacarde.h"
 #include "raaCarFacarde.h"
 #include "raaTrafficSystem.h"
+#include "TrafficLightFacarde.h"
 
 
 typedef std::vector<raaAnimationPointFinder>raaAnimationPointFinders;
@@ -95,14 +96,6 @@ osg::AnimationPath* createAnimationPath(raaAnimationPointFinders apfs, osg::Grou
 
 void buildRoad(osg::Group* pRoadGroup)
 {
-	/*addRoadTile("roadStraight", "tile0", 0, 0, 0.0f, pRoadGroup);
-	addRoadTile("roadCurve", "tile1", 1, 0, 90.0f, pRoadGroup);
-	addRoadTile("roadStraight", "tile2", 1, 1, 90.0f, pRoadGroup);
-	addRoadTile("roadCurve", "tile3", 1, 2, 180.0f, pRoadGroup);
-	addRoadTile("roadStraight", "tile4", 0, 2, 0.0f, pRoadGroup);
-	addRoadTile("roadCurve", "tile5", -1, 2, -90.0f, pRoadGroup);
-	addRoadTile("roadStraight", "tile6", -1, 1, -90.0f, pRoadGroup);
-	addRoadTile("roadCurve", "tile7", -1, 0, 0.0f, pRoadGroup);*/
 	addRoadTile("roadTJunction", "tile0", 0, 0, -90.0f, pRoadGroup);
 	addRoadTile("roadStraight", "tile1", -1, 0, 0.0f, pRoadGroup);
 	addRoadTile("roadCurve", "tile2", -2, 0, 0.0f, pRoadGroup);
@@ -261,6 +254,19 @@ void createCarTwo(osg::Group* pRoadGroup) {
 	g_pRoot->addChild(pCar->root());
 }
 
+void createTrafficLights(osg::Group* pTrafficLightGroup) {
+	TrafficLightFacarde* tlFacarde1 =
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "trafficLight0"),
+			osg::Vec3(-175.0f, 1125.0f, 0.0f), -90.0f, 0.08f);
+	pTrafficLightGroup->addChild(tlFacarde1->root());
+
+	TrafficLightFacarde* tlFacarde2 =
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "trafficLight1"),
+			osg::Vec3(200.0f, 750.0f, 0.0f), 90.0f, 0.08f);
+
+	pTrafficLightGroup->addChild(tlFacarde2->root());
+
+}
 int main(int argc, char** argv)
 {
 	raaAssetLibrary::start();
@@ -297,6 +303,11 @@ int main(int argc, char** argv)
 
 	// Add car two
 	createCarTwo(pRoadGroup);
+
+	// Traffic Lights
+	osg::Group* trafficLightGroup = new osg::Group();
+	g_pRoot->addChild(trafficLightGroup);
+	createTrafficLights(trafficLightGroup);
 
 
 	// osg setup stuff
