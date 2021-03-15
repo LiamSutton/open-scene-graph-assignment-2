@@ -1,13 +1,15 @@
 #include "TrafficLightControl.h"
 
+int change; // used to swap between ascending and descending traffic light flows
 TrafficLightControl::TrafficLightControl(osg::Node* pPart, osg::Vec3 vTrans, float fRot, float fScale) : raaNodeCallbackFacarde(pPart, vTrans, fRot, fScale)
 {
 	timeCount = 0;
+	change = 1;
 }
 
 TrafficLightControl::~TrafficLightControl()
 {
-
+	
 }
 
 void TrafficLightControl::operator() (osg::Node* node, osg::NodeVisitor* nv)
@@ -31,20 +33,27 @@ void TrafficLightControl::operator() (osg::Node* node, osg::NodeVisitor* nv)
 
 void TrafficLightControl::changeTrafficLight(TrafficLightFacarde* pTrafficLight)
 {
-	pTrafficLight->m_iTrafficLightStatus++;
-	if (pTrafficLight->m_iTrafficLightStatus > 3)
+	pTrafficLight->m_iTrafficLightStatus+=change; // alter the status by the current direction. IE: ASC = 1, 2, 3 and DESC = 2, 1
+	
+	if (pTrafficLight->m_iTrafficLightStatus > 3) // out of bounds of the status, we know we will now be descending therefore alter the change value and set it to amber
 	{
-		pTrafficLight->m_iTrafficLightStatus = 1;
+		change = -1;
+		pTrafficLight->m_iTrafficLightStatus = 2;
 	}
-	if (pTrafficLight->m_iTrafficLightStatus == 1)
+	if (pTrafficLight->m_iTrafficLightStatus < 1) { // out of bounds of the status, we know we will now be ascending therefore alter the change value and set it to amber
+		change = 1;
+		pTrafficLight->m_iTrafficLightStatus = 2;
+	}
+
+	if (pTrafficLight->m_iTrafficLightStatus == 1) // set red
 	{
 		pTrafficLight->setRedTrafficLight();
 	}
-	if (pTrafficLight->m_iTrafficLightStatus == 2)
+	if (pTrafficLight->m_iTrafficLightStatus == 2) // set amber
 	{
 		pTrafficLight->setAmberTrafficLight();
 	}
-	if (pTrafficLight->m_iTrafficLightStatus == 3)
+	if (pTrafficLight->m_iTrafficLightStatus == 3) // set green
 	{
 		pTrafficLight->setGreenTrafficLight();
 	}
