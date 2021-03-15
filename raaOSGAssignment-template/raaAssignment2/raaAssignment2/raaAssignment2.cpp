@@ -372,6 +372,25 @@ void createTrafficLights(osg::Group* pTrafficLightGroup) {
 	pTile0TJunction->addTrafficLight(tlFacarde5);
 	pTile0TJunction->addTrafficLight(tlFacarde6);
 	pTile0TJunction->addTrafficLight(tlFacarde7);
+
+	// Controller for Tile 4 T Junction
+	TrafficLightControl* pTile4TJunction =
+		new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadTJunction", "TJ4"),
+			osg::Vec3(-945.0f, 945.0f, 0.0f), -180.0f, 1.0f);
+	g_pRoot->addChild(pTile4TJunction->root());
+
+	pTile4TJunction->addTrafficLight(tlFacarde8);
+	pTile4TJunction->addTrafficLight(tlFacarde9);
+	pTile4TJunction->addTrafficLight(tlFacarde10);
+
+	TrafficLightControl* pTile11TJunction =
+		new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadTJunction", "TJ11"),
+			osg::Vec3(0.0f, 1890.0f, 0.0f), 90.0f, 1.0f);
+	g_pRoot->addChild(pTile11TJunction->root());
+
+	pTile11TJunction->addTrafficLight(tlFacarde11);
+	pTile11TJunction->addTrafficLight(tlFacarde12);
+	pTile11TJunction->addTrafficLight(tlFacarde13);
 }
 int main(int argc, char** argv)
 {
