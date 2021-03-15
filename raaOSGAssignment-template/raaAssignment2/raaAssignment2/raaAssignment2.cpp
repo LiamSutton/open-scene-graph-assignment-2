@@ -22,6 +22,7 @@
 #include "raaCarFacarde.h"
 #include "raaTrafficSystem.h"
 #include "TrafficLightFacarde.h"
+#include "TrafficLightControl.h"
 
 
 typedef std::vector<raaAnimationPointFinder>raaAnimationPointFinders;
@@ -263,9 +264,28 @@ void createTrafficLights(osg::Group* pTrafficLightGroup) {
 	TrafficLightFacarde* tlFacarde2 =
 		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "trafficLight1"),
 			osg::Vec3(200.0f, 750.0f, 0.0f), 90.0f, 0.08f);
-
 	pTrafficLightGroup->addChild(tlFacarde2->root());
 
+	TrafficLightFacarde* tlFacarde3 =
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "trafficLight2"),
+			osg::Vec3(-175.0f, 750.0f, 0.0f), 0.0f, 0.08f);
+	pTrafficLightGroup->addChild(tlFacarde3->root());
+
+	TrafficLightFacarde* tlFacarde4 =
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "trafficLight3"),
+			osg::Vec3(200.0f, 1125.0f, 0.0f), -180.0f, 0.08f);
+	pTrafficLightGroup->addChild(tlFacarde4->root());
+
+	TrafficLightControl* pJunction = new
+		TrafficLightControl(raaAssetLibrary::getNamedAsset("roadXJunction", "tile4"),
+			osg::Vec3(0.0f, 945.0f, 0.0f), 0.0f, 1.0f);
+
+	g_pRoot->addChild(pJunction->root());
+
+	pJunction->addTrafficLight(tlFacarde1);
+	pJunction->addTrafficLight(tlFacarde2);
+	pJunction->addTrafficLight(tlFacarde3);
+	pJunction->addTrafficLight(tlFacarde4);
 }
 int main(int argc, char** argv)
 {
@@ -308,6 +328,8 @@ int main(int argc, char** argv)
 	osg::Group* trafficLightGroup = new osg::Group();
 	g_pRoot->addChild(trafficLightGroup);
 	createTrafficLights(trafficLightGroup);
+
+
 
 
 	// osg setup stuff
