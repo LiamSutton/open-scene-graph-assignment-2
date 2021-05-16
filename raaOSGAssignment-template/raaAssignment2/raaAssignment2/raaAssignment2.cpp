@@ -449,10 +449,10 @@ int main(int argc, char** argv)
 	g_pRoot->addChild(trafficLightGroup);
 	createTrafficLights(trafficLightGroup);*/
 
-	// Tile 0 T Junction
+	#pragma region Tile 0 T Junction
 	osg::Group* tile0TJunction = new osg::Group();
 	g_pRoot->addChild(tile0TJunction);
-	
+
 	TrafficLightFacarde* tlFacarde0 = // Horizontal
 		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 0"),
 			osg::Vec3(-175.0f, 200.0f, 0.0f), FACE_LEFT, 0.08f, true);
@@ -480,6 +480,47 @@ int main(int argc, char** argv)
 	pTile0TJunctionController->addTrafficLight(tlFacarde2);
 
 
+#pragma endregion
+
+	#pragma region Tile 6 X Junction
+	osg::Group* tile6XJunction = new osg::Group();
+	g_pRoot->addChild(tile6XJunction);
+
+	TrafficLightFacarde* tlFacarde3 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 3"),
+		osg::Vec3(-175.0f, 1125.0f, 0.0f), FACE_LEFT, 0.08f, true);
+
+	TrafficLightFacarde* tlFacarde4 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 4"),
+			osg::Vec3(200.0f, 750.0f, 0.0f), FACE_RIGHT, 0.08f, true);
+
+
+	TrafficLightFacarde* tlFacarde5 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 5"),
+			osg::Vec3(-175.0f, 750.0f, 0.0f), FACE_FORWARD, 0.08f, false);
+
+	TrafficLightFacarde* tlFacarde6 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 6"),
+			osg::Vec3(200.0f, 1125.0f, 0.0f), FACE_UP, 0.08f, false);
+
+
+	tile6XJunction->addChild(tlFacarde3->root());
+	tile6XJunction->addChild(tlFacarde4->root());
+	tile6XJunction->addChild(tlFacarde5->root());
+	tile6XJunction->addChild(tlFacarde6->root());
+
+
+	TrafficLightControl* Tile6XJunctionController = new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadXJunction", "XJ6"),
+		osg::Vec3(0.0f, 945.0f, 0.0f), 0.0f, 1.0f);
+	
+	g_pRoot->addChild(Tile6XJunctionController->root());
+
+	Tile6XJunctionController->addTrafficLight(tlFacarde3);
+	Tile6XJunctionController->addTrafficLight(tlFacarde4);
+	Tile6XJunctionController->addTrafficLight(tlFacarde5);
+	Tile6XJunctionController->addTrafficLight(tlFacarde6);
+
+#pragma endregion
 
 
 	// osg setup stuff
