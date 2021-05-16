@@ -1,14 +1,19 @@
 #include "TrafficLightFacarde.h"
 #include "raaFinder.h"
 
-TrafficLightFacarde::TrafficLightFacarde(osg::Node* pPart, osg::Vec3 vTrans, float fRot, float fScale) :raaFacarde(pPart, vTrans, fRot, fScale)
+TrafficLightFacarde::TrafficLightFacarde(osg::Node* pPart, osg::Vec3 vTrans, float fRot, float fScale, bool bIsHorizontal) :raaFacarde(pPart, vTrans, fRot, fScale)
 {
 	initLights(pPart);
+	if (bIsHorizontal) {
+		setRedTrafficLight();
+	}
+	else {
+		setGreenTrafficLight();
+	}
 }
 
 TrafficLightFacarde::~TrafficLightFacarde()
 {
-
 }
 
 void TrafficLightFacarde::initLights(osg::Node* pPart)
@@ -42,8 +47,6 @@ void TrafficLightFacarde::initLights(osg::Node* pPart)
 	createMaterial({ 0.15f, 0.11f, 0.0f }, m_pAmberTrafficLightOffMaterial);
 	createMaterial({ 0.0f, 0.85f, 0.0f }, m_pGreenTrafficLightOnMaterial);
 	createMaterial({ 0.0f, 0.09f, 0.0f }, m_pGreenTrafficLightOffMaterial);
-
-	setRedTrafficLight();
 }
 
 void TrafficLightFacarde::createMaterial(osg::Vec3f vColour, osg::Material* mat)

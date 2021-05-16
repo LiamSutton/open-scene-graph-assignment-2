@@ -6,7 +6,7 @@
 
 class TrafficLightFacarde : public raaFacarde
 {
-public:TrafficLightFacarde(osg::Node* pPart, osg::Vec3 vTrans, float fRot, float fScale);
+public:TrafficLightFacarde(osg::Node* pPart, osg::Vec3 vTrans, float fRot, float fScale, bool bIsHorizontal);
 	  virtual ~TrafficLightFacarde();
 	  void initLights(osg::Node* pPart);
 	  void createMaterial(osg::Vec3f vColour, osg::Material* mat);
