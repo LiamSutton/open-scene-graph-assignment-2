@@ -14,7 +14,7 @@ TrafficLightControl::~TrafficLightControl()
 
 void TrafficLightControl::operator() (osg::Node* node, osg::NodeVisitor* nv)
 {
-	if (timeCount == 250)
+	if (timeCount == 100)
 	{
 		int noOfLightsUpdate = m_lTrafficLights.size();
 		for (trafficLightList::iterator it = m_lTrafficLights.begin(); it != m_lTrafficLights.end(); it++)
@@ -33,7 +33,8 @@ void TrafficLightControl::operator() (osg::Node* node, osg::NodeVisitor* nv)
 
 void TrafficLightControl::changeTrafficLight(TrafficLightFacarde* pTrafficLight)
 {
-	int change = pTrafficLight->m_bAscending ? 1 : -1;
+	int change = pTrafficLight->m_bAscending ? 1 : -1; // Used to determine the next traffic light sequence based on the current direction of change
+
 	pTrafficLight->m_iTrafficLightStatus+=change; // alter the status by the current direction. IE: ASC = 1, 2, 3 and DESC = 2, 1
 	
 	if (pTrafficLight->m_iTrafficLightStatus > 3) // out of bounds of the status, we know we will now be descending therefore alter the change value and set it to amber
