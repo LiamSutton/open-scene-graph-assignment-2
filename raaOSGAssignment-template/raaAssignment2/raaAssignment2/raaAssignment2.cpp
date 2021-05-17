@@ -522,7 +522,7 @@ int main(int argc, char** argv)
 
 #pragma endregion
 
-#pragma region Tile 4 T Junction
+	#pragma region Tile 4 T Junction
 
 	osg::Group* Tile4TJunction = new osg::Group();
 	g_pRoot->addChild(Tile4TJunction);
@@ -553,6 +553,72 @@ int main(int argc, char** argv)
 	Tile4JunctionController->addTrafficLight(tlFacarde8);
 	Tile4JunctionController->addTrafficLight(tlFacarde9);
 #pragma endregion
+
+	#pragma region Tile 11 T Junction
+
+	osg::Group* Tile11TJunction = new osg::Group();
+	g_pRoot->addChild(Tile11TJunction);
+
+	TrafficLightFacarde* tlFacarde11 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 11"),
+			osg::Vec3(-175.0f, 1700.0f, 0.0f), FACE_FORWARD, 0.08f, false);
+
+	TrafficLightFacarde* tlFacarde12 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 12"),
+			osg::Vec3(200.0f, 1700.0f, 0.0f), FACE_RIGHT, 0.08f, true);
+
+	TrafficLightFacarde* tlFacarde13 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 13"),
+			osg::Vec3(-175, 2050.0f, 0.0f), FACE_LEFT, 0.08f, true);
+
+	Tile11TJunction->addChild(tlFacarde11->root());
+	Tile11TJunction->addChild(tlFacarde12->root());
+	Tile11TJunction->addChild(tlFacarde13->root());
+
+	TrafficLightControl* Tile11TJunctionController =
+		new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadTJunction", "TJ11"),
+			osg::Vec3(0.0f, 1890.0f, 0.0f), 90.0f, 1.0f);
+	
+	g_pRoot->addChild(Tile11TJunctionController->root());
+
+	Tile11TJunctionController->addTrafficLight(tlFacarde11);
+	Tile11TJunctionController->addTrafficLight(tlFacarde12);
+	Tile11TJunctionController->addTrafficLight(tlFacarde13);
+
+#pragma endregion
+
+	#pragma region Tile 16 T Junction
+	osg::Group* Tile16TJunction = new osg::Group();
+	g_pRoot->addChild(Tile16TJunction);
+
+	TrafficLightFacarde* tlFacarde14 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 14"),
+			osg::Vec3(750.0f, 750.0f, 0.0f), FACE_FORWARD, 0.08f, false);
+
+	TrafficLightFacarde* tlFacarde15 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 15"),
+			osg::Vec3(750.0f, 1125.0f, 0.0f), FACE_LEFT, 0.08f, true);
+
+	TrafficLightFacarde* tlFacarde16 = 
+		new TrafficLightFacarde(raaAssetLibrary::getClonedAsset("trafficLight", "Traffic Light 16"),
+			osg::Vec3(1125.0f, 1125.0f, 0.0f), FACE_UP, 0.08f, false);
+
+	Tile16TJunction->addChild(tlFacarde14->root());
+	Tile16TJunction->addChild(tlFacarde15->root());
+	Tile16TJunction->addChild(tlFacarde16->root());
+
+	TrafficLightControl* Tile16TJunctionController = 
+		new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadTJunction", "TJ16"),
+			osg::Vec3(945.0f, 945.0f, 0.0f), 0.0f, 1.0f);
+
+	g_pRoot->addChild(Tile16TJunctionController->root());
+
+	Tile16TJunctionController->addTrafficLight(tlFacarde14);
+	Tile16TJunctionController->addTrafficLight(tlFacarde15);
+	Tile16TJunctionController->addTrafficLight(tlFacarde16);
+#pragma endregion
+
+
 
 
 
