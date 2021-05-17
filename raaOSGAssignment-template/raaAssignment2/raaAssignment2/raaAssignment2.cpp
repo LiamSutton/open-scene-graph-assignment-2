@@ -193,6 +193,7 @@ void createCarOne(osg::Group* pRoadGroup)
 	// NOTE: you will need to extend or develop the car facarde to manage the animmation speed and events
 	raaCarFacarde* pCar = new raaCarFacarde(g_pRoot, raaAssetLibrary::getNamedAsset("vehicle", "car0"), ap, 50.0);
 	g_pRoot->addChild(pCar->root());
+	pCar->setName("Car 0");
 }
 
 void createCarTwo(osg::Group* pRoadGroup) {
@@ -258,6 +259,7 @@ void createCarTwo(osg::Group* pRoadGroup) {
 
 	raaCarFacarde* pCar = new raaCarFacarde(g_pRoot, raaAssetLibrary::getNamedAsset("vehicle", "car1"), ap, 50.0);
 	g_pRoot->addChild(pCar->root());
+	pCar->setName("Car 1");
 }
 
 void createTrafficLights(osg::Group* pTrafficLightGroup) {
@@ -473,6 +475,8 @@ int main(int argc, char** argv)
 	osg::Group* trafficLightGroup = new osg::Group();
 	g_pRoot->addChild(trafficLightGroup);
 	createTrafficLights(trafficLightGroup);
+
+	
 
 	// osg setup stuff
 	osg::GraphicsContext::Traits* pTraits = new osg::GraphicsContext::Traits();

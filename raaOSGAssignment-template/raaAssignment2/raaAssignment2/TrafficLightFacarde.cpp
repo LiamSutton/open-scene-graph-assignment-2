@@ -12,6 +12,7 @@ TrafficLightFacarde::TrafficLightFacarde(osg::Node* pPart, osg::Vec3 vTrans, flo
 	else {
 		setGreenTrafficLight();
 	}
+	raaTrafficSystem::addTarget(this);
 }
 
 TrafficLightFacarde::~TrafficLightFacarde()
@@ -83,6 +84,16 @@ void TrafficLightFacarde::setGreenTrafficLight()
 	m_pRedTrafficLight->getOrCreateStateSet()->setAttribute(m_pRedTrafficLightOffMaterial, osg::StateAttribute::ON || osg::StateAttribute::OVERRIDE);
 	m_pAmberTrafficLight->getOrCreateStateSet()->setAttribute(m_pAmberTrafficLightOffMaterial, osg::StateAttribute::ON || osg::StateAttribute::OVERRIDE);
 	m_pGreenTrafficLight->getOrCreateStateSet()->setAttribute(m_pGreenTrafficLightOnMaterial, osg::StateAttribute::ON || osg::StateAttribute::OVERRIDE);
+}
+
+osg::Vec3f TrafficLightFacarde::getWorldDetectionPoint()
+{
+	return osg::Vec3(); // should return the world position of the detection point for this subtree
+}
+
+osg::Vec3f TrafficLightFacarde::getWorldCollisionPoint()
+{
+	return osg::Vec3(); // should return the world position of the collision point for this subtree
 }
 
 

@@ -11,6 +11,7 @@
 #include "raaTrafficSystem.h"
 #include "raaCarFacarde.h"
 #include <iostream>
+#include "raaFinder.h"
 
 raaCarFacarde::raaCarFacarde(osg::Node* pWorldRoot, osg::Node* pPart, osg::AnimationPath* ap, double dSpeed): raaAnimatedFacarde(pPart, ap, dSpeed)
 {
@@ -25,12 +26,10 @@ raaCarFacarde::~raaCarFacarde()
 void raaCarFacarde::operator()(osg::Node* node, osg::NodeVisitor* nv)
 {
 	// use this function to loop through all the dynamic facardes (in raaTrafficSystem) to manage interactions between both lights and cars
-
-	raaFacardes facades = raaFacarde::facardes();
-
-	for (const auto& facade : facades) {
+	/*for (const auto& facade : raaFacarde::facardes()) {
 		
-	}
+	}*/
+
 	raaAnimationPathCallback::operator()(node, nv);
 }
 
