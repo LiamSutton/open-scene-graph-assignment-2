@@ -474,12 +474,6 @@ int main(int argc, char** argv)
 	g_pRoot->addChild(trafficLightGroup);
 	createTrafficLights(trafficLightGroup);
 
-
-
-
-
-
-
 	// osg setup stuff
 	osg::GraphicsContext::Traits* pTraits = new osg::GraphicsContext::Traits();
 	pTraits->x = 20;

@@ -26,6 +26,11 @@ void raaCarFacarde::operator()(osg::Node* node, osg::NodeVisitor* nv)
 {
 	// use this function to loop through all the dynamic facardes (in raaTrafficSystem) to manage interactions between both lights and cars
 
+	raaFacardes facades = raaFacarde::facardes();
+
+	for (const auto& facade : facades) {
+		
+	}
 	raaAnimationPathCallback::operator()(node, nv);
 }
 

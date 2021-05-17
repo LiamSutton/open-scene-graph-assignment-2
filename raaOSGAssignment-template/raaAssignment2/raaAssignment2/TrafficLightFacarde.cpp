@@ -1,9 +1,11 @@
 #include "TrafficLightFacarde.h"
 #include "raaFinder.h"
+#include "raaTrafficSystem.h"
 
 TrafficLightFacarde::TrafficLightFacarde(osg::Node* pPart, osg::Vec3 vTrans, float fRot, float fScale, bool bIsHorizontal) :raaFacarde(pPart, vTrans, fRot, fScale)
 {
 	initLights(pPart);
+	// if the traffic light is placed horizontally it will begin with a red light, if vertical, it will start on green
 	if (bIsHorizontal) {
 		setRedTrafficLight();
 	}
