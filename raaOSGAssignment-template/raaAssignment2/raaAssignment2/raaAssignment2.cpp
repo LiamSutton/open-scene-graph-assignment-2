@@ -23,7 +23,7 @@
 #include "raaTrafficSystem.h"
 #include "TrafficLightFacarde.h"
 #include "TrafficLightControl.h"
-
+#include "raaFinder.h"
 
 typedef std::vector<raaAnimationPointFinder>raaAnimationPointFinders;
 osg::Group* g_pRoot = 0; // root of the sg
@@ -40,8 +40,8 @@ public:
 	PrintVisitor() : osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) {};
 
 	virtual void apply(osg::Node& node) {
-		std::cout << "Node -> " << node.getName().c_str() << std::endl;
 		
+		std::cout << node.getName() << std::endl;
 		if (node.asGroup()) {
 			PrintVisitor visitor;
 			visitor.traverse(node);
@@ -301,7 +301,7 @@ void createTrafficLights(osg::Group* pTrafficLightGroup) {
 	TrafficLightControl* pTile0TJunctionController =
 		new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadTJunction", "TJ0"),
 			osg::Vec3(0.0f, 0.0f, 0.0f), -90.0f, 1.0f);
-
+	pTile0TJunctionController->setName("Tile 0 T Junction Controller");
 	g_pRoot->addChild(pTile0TJunctionController->root());
 
 	pTile0TJunctionController->addTrafficLight(tlFacarde0);
@@ -341,6 +341,8 @@ void createTrafficLights(osg::Group* pTrafficLightGroup) {
 
 	TrafficLightControl* Tile6XJunctionController = new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadXJunction", "XJ6"),
 		osg::Vec3(0.0f, 945.0f, 0.0f), 0.0f, 1.0f);
+	Tile6XJunctionController->setName("Tile 6 X Junction Controller");
+	std::cout << Tile6XJunctionController->getCompoundClassName() << std::endl;
 
 	g_pRoot->addChild(Tile6XJunctionController->root());
 
@@ -372,15 +374,17 @@ void createTrafficLights(osg::Group* pTrafficLightGroup) {
 	Tile4TJunction->addChild(tlFacarde8->root());
 	Tile4TJunction->addChild(tlFacarde9->root());
 
-	TrafficLightControl* Tile4JunctionController =
+	TrafficLightControl* Tile4TJunctionController =
 		new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadTJunction", "TJ4"),
 			osg::Vec3(-945.0f, 945.0f, 0.0f), -180.0f, 1.0f);
 
-	g_pRoot->addChild(Tile4JunctionController->root());
+	Tile4TJunctionController->setName("Tile 4 T Junction Controller");
+	
+	g_pRoot->addChild(Tile4TJunctionController->root());
 
-	Tile4JunctionController->addTrafficLight(tlFacarde7);
-	Tile4JunctionController->addTrafficLight(tlFacarde8);
-	Tile4JunctionController->addTrafficLight(tlFacarde9);
+	Tile4TJunctionController->addTrafficLight(tlFacarde7);
+	Tile4TJunctionController->addTrafficLight(tlFacarde8);
+	Tile4TJunctionController->addTrafficLight(tlFacarde9);
 #pragma endregion
 
 	#pragma region Tile 11 T Junction
@@ -407,6 +411,8 @@ void createTrafficLights(osg::Group* pTrafficLightGroup) {
 	TrafficLightControl* Tile11TJunctionController =
 		new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadTJunction", "TJ11"),
 			osg::Vec3(0.0f, 1890.0f, 0.0f), 90.0f, 1.0f);
+
+	Tile11TJunctionController->setName("Tile 11 T Junction Controller");
 
 	g_pRoot->addChild(Tile11TJunctionController->root());
 
@@ -439,6 +445,8 @@ void createTrafficLights(osg::Group* pTrafficLightGroup) {
 	TrafficLightControl* Tile16TJunctionController =
 		new TrafficLightControl(raaAssetLibrary::getNamedAsset("roadTJunction", "TJ16"),
 			osg::Vec3(945.0f, 945.0f, 0.0f), 0.0f, 1.0f);
+
+	Tile16TJunctionController->setName("Tile 16 T Junction Controller");
 
 	g_pRoot->addChild(Tile16TJunctionController->root());
 
@@ -487,13 +495,12 @@ int main(int argc, char** argv)
 	createCarTwo(pRoadGroup);
 
 	// Traffic Lights
-	osg::Group* trafficLightGroup = new osg::Group();
-	trafficLightGroup->setName("Traffic Lights Group");
-	g_pRoot->addChild(trafficLightGroup);
-	createTrafficLights(trafficLightGroup);
-	PrintVisitor printer;
-	printer.traverse(*g_pRoot);
-	
+	osg::Group* pTrafficLightGroup = new osg::Group();
+	pTrafficLightGroup->setName("Traffic Lights Group");
+	g_pRoot->addChild(pTrafficLightGroup);
+	createTrafficLights(pTrafficLightGroup);
+	PrintVisitor visitor;
+	//visitor.traverse(*g_pRoot);
 
 	// osg setup stuff
 	osg::GraphicsContext::Traits* pTraits = new osg::GraphicsContext::Traits();
