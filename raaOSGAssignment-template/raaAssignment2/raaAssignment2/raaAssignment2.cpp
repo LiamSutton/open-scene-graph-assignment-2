@@ -35,6 +35,20 @@ const float FACE_LEFT = -90.0f;
 const float FACE_UP = 180.0f;
 const float FACE_RIGHT = 90.0f;
 
+class PrintVisitor : public osg::NodeVisitor {
+public:
+	PrintVisitor() : osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) {};
+
+	virtual void apply(osg::Node& node) {
+		std::cout << "Node -> " << node.getName().c_str() << std::endl;
+		
+		if (node.asGroup()) {
+			PrintVisitor visitor;
+			visitor.traverse(node);
+		}
+	}
+};
+
 enum raaRoadTileType
 {
 	Normal,
@@ -460,6 +474,7 @@ int main(int argc, char** argv)
 
 	// add a group node to the scene to hold the road sub-tree
 	osg::Group* pRoadGroup = new osg::Group();
+	pRoadGroup->setName("Roads Group");
 	g_pRoot->addChild(pRoadGroup);
 
 	// Create road
@@ -473,9 +488,11 @@ int main(int argc, char** argv)
 
 	// Traffic Lights
 	osg::Group* trafficLightGroup = new osg::Group();
+	trafficLightGroup->setName("Traffic Lights Group");
 	g_pRoot->addChild(trafficLightGroup);
 	createTrafficLights(trafficLightGroup);
-
+	PrintVisitor printer;
+	printer.traverse(*g_pRoot);
 	
 
 	// osg setup stuff
